@@ -60,7 +60,9 @@ class WeightController extends Controller
         ]);
         $weight->save();
         
-        return redirect('/weight/' . $weight->id);
+        return $this->index()->with([
+            'message_success' => "The weight has inserted"
+        ]);
     }
 
     /**
