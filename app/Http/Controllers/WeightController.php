@@ -86,7 +86,9 @@ class WeightController extends Controller
      */
     public function edit(Weight $weight)
     {
-        //
+        return view('weight.edit')->with([
+            'weight' => $weight
+        ]);
     }
 
     /**
@@ -98,7 +100,19 @@ class WeightController extends Controller
      */
     public function update(Request $request, Weight $weight)
     {
-        //
+        $request->validate([
+            'weight' => 'required:min:2'
+        ]);
+
+        $weight ->update([
+            'weight' => $request['weight'],
+            'created_at' => $request['created_at'],
+            'user_id' => auth()->id()
+        ]);
+        
+        return $this->index()->with([
+            'message_success' => "The weight has updated"
+        ]);
     }
 
     /**
