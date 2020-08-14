@@ -25,6 +25,10 @@
                 </div>
             </div>
 
+            {!! $chart->container() !!}
+
+            {!! $chart->script() !!}
+
 
 
             <div class="mt-2">
@@ -33,5 +37,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

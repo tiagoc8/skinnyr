@@ -41,4 +41,6 @@ return [
     |
     */
     'global_route_name_prefix' => 'charts',
+
+    'default_library' => 'Chartjs',
 ];

@@ -21,6 +21,7 @@ Route::get('/info', function () {
     return view('info');
 });
 
+
 Route::resource('weight', 'WeightController');
 
 Auth::routes();

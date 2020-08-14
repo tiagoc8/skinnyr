@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Weight;
 use Illuminate\Http\Request;
 
+use App\Charts\WeightChart;
+
+use ConsoleTVs\Charts\Facades\Charts;
+
 class WeightController extends Controller
 {
 
@@ -128,6 +132,21 @@ class WeightController extends Controller
         return $this->index()->with([
             'message_success' => "The weight has deleted"
         ]);
+    }
+
+
+    public function chart(Request $request)
+    {
+        $wc = Weight::orderBy('created_at')->pluck('weight', 'created_at');
+
+        $chart = new WeightChart;
+
+        $chart->labels($wc->keys());
+
+        $chart->dataset('My Weight', 'line', $wc->values()); 
+
+        return view ('weight.index', compact('chart'));
+
     }
 
 }
