@@ -6,7 +6,7 @@
 
 @auth
     <div style="width: 50%" class="container">
-        <h1 class="text-center">Weight Graph</h1>
+        <h1 class="text-center">My Weight</h1>
         {!! $weightsChart->container() !!}
     </div>
 @endauth

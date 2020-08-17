@@ -28,7 +28,9 @@ class WeightChartController extends Controller
 
         $weightsChart = new WeightChart;
         $weightsChart->labels($wc->keys());
-        $weightsChart->dataset('My Weight', 'line', $wc->values());
+        $weightsChart->dataset('My Weight', 'bar', $wc->values())
+        ->backgroundColor('#2FA360');
+            
     
         return view('weight.chart', [ 'weightsChart' => $weightsChart ] );
     }
