@@ -135,18 +135,4 @@ class WeightController extends Controller
     }
 
 
-    public function chart(Request $request)
-    {
-        $wc = Weight::orderBy('created_at')->pluck('weight', 'created_at');
-
-        $chart = new WeightChart;
-
-        $chart->labels($wc->keys());
-
-        $chart->dataset('My Weight', 'line', $wc->values()); 
-
-        return view ('weight.index', compact('chart'));
-
-    }
-
 }

@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Weight;
+
+use App\Charts\WeightChart;
 use Illuminate\Http\Request;
 
 class WeightChartController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,75 +22,15 @@ class WeightChartController extends Controller
      */
     public function index()
     {
+        $wc = Weight::select()
+        ->where('user_id', auth()->id())
+        ->orderBy('created_at')->pluck('weight', 'created_at');
+
         $weightsChart = new WeightChart;
-        $weightsChart->labels(['Jan', 'Feb', 'Mar']);
-        $weightsChart->dataset('Users by trimester', 'line', [10, 25, 13]);
-        return view('chart', [ 'weightsChart' => $weightsChart ] );
+        $weightsChart->labels($wc->keys());
+        $weightsChart->dataset('My Weight', 'line', $wc->values());
+    
+        return view('weight.chart', [ 'weightsChart' => $weightsChart ] );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

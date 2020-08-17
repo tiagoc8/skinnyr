@@ -28,4 +28,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('weights', 'WeightChartController@index');
+
+Route::get('/charts', 'WeightChartController@index');
+
+
 

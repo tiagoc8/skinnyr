@@ -40,7 +40,7 @@ return [
     | binded to the charts.
     |
     */
-    'global_route_name_prefix' => 'charts',
+    //'global_route_name_prefix' => 'charts',
 
     'default_library' => 'Chartjs',
 ];

@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
 </head>
 <body>
     <div id="app">
@@ -43,6 +44,7 @@
                     @endguest
                         <li><a href="/info" class="nav-link {{Request::is('info') ? ' active' : ''}}">Info</a></li>
                         <li><a href="/weight" class="nav-link {{Request::is('weight*') ? ' active' : ''}}">Weight</a></li>
+                        <li><a href="/charts" class="nav-link {{Request::is('chart*') ? ' active' : ''}}">Chart</a></li>
                         
                         
                     </ul>
@@ -95,11 +97,9 @@
         </main>
     </div>
 
-    <script src="path/to/chartjs/dist/Chart.js"></script>
-
-    <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
-
+    @stack('scripts')
 
 </body>
+
 
 </html>

@@ -1,25 +1,18 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Charts;
 
-use Chartisan\PHP\Chartisan;
-use ConsoleTVs\Charts\BaseChart;
-use Illuminate\Http\Request;
+use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
-class WeightChart extends BaseChart
+class WeightChart extends Chart
 {
     /**
-     * Handles the HTTP request for the given chart.
-     * It must always return an instance of Chartisan
-     * and never a string or an array.
+     * Initializes the chart.
+     *
+     * @return void
      */
-    public function handler(Request $request): Chartisan
+    public function __construct()
     {
-        return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [1, 2, 3])
-            ->dataset('Sample 2', [3, 2, 1]);
+        parent::__construct();
     }
 }
